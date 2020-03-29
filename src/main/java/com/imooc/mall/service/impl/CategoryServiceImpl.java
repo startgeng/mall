@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,6 +20,26 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Autowired
     private CategoryMapper categoryMapper;
+
+    /**
+     * 查询所有商品
+     * @param id
+     * @param resultSet
+     */
+    @Override
+    public void findSubCategoryId(Integer id, Set<Integer> resultSet) {
+        List<Category> categories = categoryMapper.selectAll();
+        findSubCategoryId(id,resultSet,categories);
+    }
+
+    public void findSubCategoryId(Integer id, Set<Integer> resultSet,List<Category> categories){
+        for (Category category:categories) {
+            if (category.getParentId().equals(id)){
+                resultSet.add(category.getId());
+                findSubCategoryId(category.getId(),resultSet);
+            }
+        }
+    }
 
     @Override
     public ResponseVo<List<CategoryVo>> selectAll() {
@@ -57,7 +78,7 @@ public class CategoryServiceImpl implements ICategoryService {
                     CategoryVo subcategoryVo = category2CategoryVo(category);
                     subCategoryVoList.add(subcategoryVo);
                 }
-//                subCategoryVoList.sort(Comparator.comparing(CategoryVo::getSortOrder).reversed());
+                //                subCategoryVoList.sort(Comparator.comparing(CategoryVo::getSortOrder).reversed());
                 subCategoryVoList.sort(Comparator.comparing(CategoryVo::getSortOrder).reversed());
                 categoryVo.setSubCategories(subCategoryVoList);
                 findSubCategory(subCategoryVoList,categories);

@@ -23,6 +23,8 @@ public enum ResponseEnum {
     NEED_LOGIN(10, "用户未登录,无法获取当前用户信息"),
 
     USER_OR_PASSWORD_ERROR(11, "用户名和密码不正确"),
+
+    PRODUCT_OFF_SALE_OR_DELETE(12,"商品下架或删除"),
     ;
     private Integer code;
 

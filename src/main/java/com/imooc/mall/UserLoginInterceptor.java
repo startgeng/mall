@@ -1,10 +1,8 @@
 package com.imooc.mall;
 
 import com.imooc.mall.consts.MallConst;
-import com.imooc.mall.enums.ResponseEnum;
 import com.imooc.mall.exception.UserLoginException;
 import com.imooc.mall.pojo.User;
-import com.imooc.mall.vo.ResponseVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 
