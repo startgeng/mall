@@ -53,7 +53,8 @@ public class CategoryServiceImpl implements ICategoryService {
 //            }
 //        }
         //查出所有的父节点
-        List<CategoryVo> categoryVoList = categories.stream().filter(e -> e.getParentId().equals(MallConst.ROOT_PARENT_ID))
+        List<CategoryVo> categoryVoList = categories.stream()
+                .filter(e -> e.getParentId().equals(MallConst.ROOT_PARENT_ID))
                 .map(e -> category2CategoryVo(e))
                 .sorted(Comparator.comparing(CategoryVo::getSortOrder).reversed())
                 .collect(Collectors.toList());

@@ -25,6 +25,12 @@ public enum ResponseEnum {
     USER_OR_PASSWORD_ERROR(11, "用户名和密码不正确"),
 
     PRODUCT_OFF_SALE_OR_DELETE(12,"商品下架或删除"),
+
+    PRODUCT_NOT_EXIT(13,"商品不存在"),
+
+    PRODUCT_STOCK_ERROR(13,"商品库存不足"),
+
+    CART_PRODUCT_NOT_EXIST(14,"购物车商品不存在"),
     ;
     private Integer code;
 
